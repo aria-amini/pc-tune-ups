@@ -1,48 +1,24 @@
+import { fmt, lint, mergeToolkitConfig } from '@aamini/config/vite-plus'
 import { defineConfig } from 'vite-plus'
 
 // Vite+ runs formatting and linting only; Astro owns the build.
-export default defineConfig({
-	fmt: {
-		singleQuote: true,
-		semi: false,
-		useTabs: true,
-		experimentalTailwindcss: {},
-		experimentalSortImports: {},
-		printWidth: 80,
-		experimentalSortPackageJson: false,
-		proseWrap: 'always',
-		ignorePatterns: ['dist/**', '.astro/**', 'pnpm-lock.yaml'],
-		overrides: [
-			{
-				files: ['*.{yaml,yml}'],
-				options: { useTabs: false },
+export default defineConfig(
+	mergeToolkitConfig(
+		{ fmt, lint: lint('astro') },
+		{
+			fmt: { ignorePatterns: (preset) => [...preset, '.astro/**'] },
+			lint: {
+				jsPlugins: ['@shadcn/lint'],
+				rules: {
+					'shadcn/require-static-classes': 'error',
+					'shadcn/no-raw-colors': 'error',
+					'shadcn/no-unknown-classes': 'error',
+					'shadcn/no-arbitrary-values': ['error', { allow: ['layout'] }],
+					'shadcn/no-inline-styles': 'error',
+					'shadcn/no-restyle': ['error', { allow: ['layout'] }],
+				},
+				ignorePatterns: (preset) => [...preset, '.astro/**'],
 			},
-		],
-	},
-	lint: {
-		plugins: [
-			'eslint',
-			'unicorn',
-			'typescript',
-			'oxc',
-			'import',
-			'jsx-a11y',
-			'node',
-			'promise',
-		],
-		options: {
-			maxWarnings: 0,
-			typeAware: true,
-			typeCheck: true,
 		},
-		rules: {
-			'no-console': ['error', { allow: ['warn', 'error'] }],
-			'typescript/consistent-type-assertions': [
-				'error',
-				{ assertionStyle: 'never' },
-			],
-			'oxc/no-accumulating-spread': 'error',
-		},
-		ignorePatterns: ['dist/**', '.astro/**'],
-	},
-})
+	),
+)

@@ -1,8 +1,8 @@
 {
-	"extends": "astro/tsconfigs/strictest",
+	"extends": "@aamini/config/tsconfig/astro.json",
 	"include": [".astro/types.d.ts", "**/*"],
 	"exclude": ["dist"],
 	"compilerOptions": {
-		"types": ["node"]
+		"types": ["astro/client", "node"]
 	}
 }

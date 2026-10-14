@@ -76,19 +76,24 @@ const buttonClass =
 		const viewport = root.querySelector<HTMLElement>(
 			'[data-slot="carousel-content"]',
 		)
+
 		const previous = root.querySelector<HTMLButtonElement>(
 			'[data-slot="carousel-previous"]',
 		)
+
 		const next = root.querySelector<HTMLButtonElement>(
 			'[data-slot="carousel-next"]',
 		)
+
 		if (!viewport || !previous || !next) continue
 
 		const embla = EmblaCarousel(viewport, { align: 'start', loop: true })
+
 		const syncButtons = () => {
 			previous.disabled = !embla.canScrollPrev()
 			next.disabled = !embla.canScrollNext()
 		}
+
 		embla.on('init', syncButtons)
 		embla.on('reInit', syncButtons)
 		embla.on('select', syncButtons)

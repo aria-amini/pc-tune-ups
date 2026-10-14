@@ -18,8 +18,7 @@ jobs:
         with:
           version: '1.1.0'
           cache: true
-      - run: vp check
-      - run: vp exec astro check
+      - run: vp run check
 
   e2e:
     runs-on: ubuntu-24.04
