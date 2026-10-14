@@ -17,7 +17,8 @@ use the networking and on-site services.
 
 PC Tune-Ups is a walk-in device repair shop. The landing page exists to turn a
 local search into a store visit. Success means the visitor gets directions and
-walks in during open hours. Calling the shop is the secondary action.
+walks in during open hours. Calling the shop is secondary: the number stays in
+the header, the mobile action bar, and the footer, never in the hero.
 
 ## Positioning
 
