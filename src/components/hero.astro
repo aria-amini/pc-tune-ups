@@ -34,12 +34,17 @@ const fixes = [
 					href={directionsLink}
 					target="_blank"
 					rel="noreferrer"
-					class="group inline-flex h-14 items-center gap-2.5 rounded-xl bg-ink px-7 text-lg font-bold text-primary shadow-lg shadow-ink/25 transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ink/30 focus-visible:outline-ink active:translate-y-0 active:shadow-md"
+					class="group inline-flex h-16 items-center gap-5 rounded-xl bg-ink pr-6 pl-7 text-primary shadow-lg shadow-ink/25 transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ink/30 focus-visible:outline-ink active:translate-y-0 active:shadow-md"
 				>
-					Get directions
+					<span class="text-left">
+						<span class="block text-lg/tight font-bold">Get directions</span>
+						<span class="block text-sm/tight font-medium text-primary/75">
+							{shop.street}, {shop.city}
+						</span>
+					</span>
 					<Icon
 						name="ArrowUpRight"
-						class="size-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+						class="size-6 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
 					/>
 				</a>
 				<a
@@ -51,10 +56,6 @@ const fixes = [
 			</div>
 			<div class="mt-6 flex animate-rise flex-wrap items-center gap-x-5 gap-y-3 rise-delay-3">
 				<OpenStatus />
-				<p class="flex items-center gap-2 text-sm font-semibold">
-					<Icon name="MapPin" class="size-4 shrink-0" />
-					<span>{address}</span>
-				</p>
 			</div>
 		</div>
 
@@ -84,11 +85,8 @@ const fixes = [
 						class="size-full origin-center scale-150 object-cover"
 					/>
 				</div>
-				<p class="text-sm/snug">
-					<span class="block font-bold">{shop.street}</span>
-					<span class="text-ink-foreground/70">
-						Look for the green sign above the door.
-					</span>
+				<p class="text-base/snug font-medium">
+					Look for the green sign above the door.
 				</p>
 			</div>
 		</div>
