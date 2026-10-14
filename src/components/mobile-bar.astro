@@ -1,5 +1,5 @@
 ---
-import { address, shop } from '../lib/shop'
+import { address, directionsLink, shop } from '../lib/shop'
 import Icon from './icon.astro'
 ---
 
@@ -9,7 +9,7 @@ import Icon from './icon.astro'
 	class="fixed inset-x-0 bottom-0 z-50 flex translate-y-full gap-3 bg-ink p-3 pb-safe opacity-0 shadow-bar transition duration-300 ease-out data-[visible]:translate-y-0 data-[visible]:opacity-100 md:hidden"
 >
 	<a
-		href={shop.mapLink}
+		href={directionsLink}
 		target="_blank"
 		rel="noreferrer"
 		aria-label={`Get directions to ${address}`}

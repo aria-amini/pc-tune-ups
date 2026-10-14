@@ -2,6 +2,13 @@ import { expect, test } from '@playwright/test'
 
 // Wednesday 1 PM in New Orleans, so the open-status pill renders the same text on every run.
 test.beforeEach(async ({ page }) => {
+	// The live map embed changes with Google's tiles, so snapshots use a blank frame.
+	await page.route('https://www.google.com/maps*', (route) =>
+		route.fulfill({
+			contentType: 'text/html',
+			body: '<body style="margin:0;background:#dfe3e8"></body>',
+		}),
+	)
 	await page.clock.setFixedTime(new Date('2026-10-14T18:00:00Z'))
 	await page.goto('/', { waitUntil: 'networkidle' })
 	await expect(
@@ -31,5 +38,6 @@ test('hero leads with directions and does not make the phone number the main act
 }) => {
 	const primary = page.locator('[data-hero-cta]')
 	await expect(primary).toHaveText(/Get directions/)
+	await expect(primary).toHaveAttribute('href', /google\.com\/maps\/dir/)
 	await expect(page.getByText(/control4|30-day|workmanship/i)).toHaveCount(0)
 })

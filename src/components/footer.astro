@@ -1,31 +1,56 @@
 ---
 import { socialIcons } from '../lib/social-icons'
-import { socialLinks } from '../lib/shop'
+import { address, directionsLink, shop, socialLinks } from '../lib/shop'
 import Icon from './icon.astro'
 
 const currentYear = new Date().getFullYear()
+
+const link =
+	'rounded-md underline decoration-2 decoration-ink-foreground/30 underline-offset-4 hover:decoration-primary hover:text-primary'
 ---
 
 <footer class="bg-ink text-ink-foreground max-md:pb-20">
-	<div class="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-10 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-8">
-		<p class="text-ink-foreground/70">
-			<span class="font-bold text-ink-foreground">PC Tune-Ups</span> · ©{' '}
-			{currentYear}. All rights reserved.
-		</p>
-		<ul class="flex flex-wrap items-center gap-2">
-			{socialLinks.map(({ name, href, icon }) => (
-				<li>
-					<a
-						class="on-ink-focus inline-flex size-11 items-center justify-center rounded-lg text-ink-foreground/80 transition-colors duration-200 hover:bg-ink-foreground/10 hover:text-primary"
-						href={href}
-						target="_blank"
-						rel="noreferrer"
-						aria-label={name}
-					>
-						<Icon node={socialIcons[icon]} class="size-5" />
-					</a>
-				</li>
-			))}
-		</ul>
+	<div class="mx-auto grid max-w-7xl gap-8 px-5 py-10 text-sm sm:px-8 md:grid-cols-3">
+		<div class="space-y-1">
+			<p class="text-base font-bold">PC Tune-Ups</p>
+			<p>
+				<a href={directionsLink} target="_blank" rel="noreferrer" class={link}>
+					{address}
+				</a>
+			</p>
+			<p class="text-ink-foreground/70">Mon–Sat 10 AM–6 PM · Closed Sunday</p>
+		</div>
+		<div class="space-y-1">
+			<p>
+				<a href={shop.phoneHref} class={link}>
+					{shop.phone}
+				</a>
+			</p>
+			<p>
+				<a href={`mailto:${shop.email}`} class={link}>
+					{shop.email}
+				</a>
+			</p>
+		</div>
+		<div class="flex flex-col gap-3 md:items-end">
+			<ul class="flex flex-wrap items-center gap-1">
+				{socialLinks.map(({ name, href, icon }) => (
+					<li>
+						<a
+							class="on-ink-focus inline-flex size-11 items-center justify-center rounded-lg text-ink-foreground/80 transition-colors duration-200 hover:bg-ink-foreground/10 hover:text-primary"
+							href={href}
+							target="_blank"
+							rel="noreferrer"
+							aria-label={name}
+						>
+							<Icon node={socialIcons[icon]} class="size-5" />
+						</a>
+					</li>
+				))}
+			</ul>
+			<p class="text-ink-foreground/70">
+				© {currentYear} PC Tune-Ups. All rights reserved.
+			</p>
+		</div>
 	</div>
 </footer>

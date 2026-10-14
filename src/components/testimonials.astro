@@ -31,10 +31,10 @@ const testimonials = [
 ---
 
 <section class="bg-ink text-ink-foreground">
-	<div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
+	<div class="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-12 lg:gap-14 lg:py-20">
 		<h2 class="sr-only">What customers say</h2>
-		<figure class="max-w-4xl">
-			<blockquote class="text-3xl/tight font-bold text-balance sm:text-4xl/tight lg:text-5xl/tight">
+		<figure class="lg:col-span-6">
+			<blockquote class="text-2xl/snug font-bold text-balance sm:text-3xl/snug">
 				<span aria-hidden="true" class="text-primary">
 					“
 				</span>
@@ -59,27 +59,27 @@ const testimonials = [
 			</figcaption>
 		</figure>
 
-		<ul class="mt-16 grid gap-x-10 gap-y-10 border-t border-ink-foreground/20 pt-10 md:grid-cols-3">
+		<ul class="divide-y divide-ink-foreground/20 lg:col-span-6">
 			{testimonials.map(({ quote, name, role, avatar }) => (
-				<li>
-					<figure class="flex h-full flex-col justify-between gap-6">
-						<blockquote class="text-lg/relaxed text-ink-foreground/90">
-							“{quote}”
-						</blockquote>
-						<figcaption class="flex items-center gap-3 text-sm">
-							<img
-								src={avatar}
-								alt=""
-								width="36"
-								height="36"
-								loading="lazy"
-								class="size-9 rounded-full object-cover"
-							/>
-							<span>
-								<span class="block font-bold">{name}</span>
-								<span class="block text-ink-foreground/70">{role}</span>
-							</span>
-						</figcaption>
+				<li class="py-5 first:pt-0 last:pb-0">
+					<figure class="flex items-start gap-4">
+						<img
+							src={avatar}
+							alt=""
+							width="36"
+							height="36"
+							loading="lazy"
+							class="mt-1 size-9 shrink-0 rounded-full object-cover"
+						/>
+						<div>
+							<blockquote class="text-base/relaxed text-ink-foreground/90">
+								“{quote}”
+							</blockquote>
+							<figcaption class="mt-1 text-sm text-ink-foreground/70">
+								<span class="font-bold text-ink-foreground">{name}</span> ·{' '}
+								{role}
+							</figcaption>
+						</div>
 					</figure>
 				</li>
 			))}

@@ -1,5 +1,5 @@
 ---
-import { address, shop } from '../lib/shop'
+import { address, directionsLink, mapEmbed, shop } from '../lib/shop'
 import Icon from './icon.astro'
 import OpenStatus from './open-status.astro'
 
@@ -31,10 +31,10 @@ const fixes = [
 			<div class="mt-8 flex animate-rise flex-wrap items-center gap-x-8 gap-y-4 rise-delay-2">
 				<a
 					data-hero-cta
-					href={shop.mapLink}
+					href={directionsLink}
 					target="_blank"
 					rel="noreferrer"
-					class="group inline-flex h-14 items-center gap-2.5 rounded-xl bg-ink px-7 text-lg font-bold text-primary shadow-lg shadow-ink/25 transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ink/30 active:translate-y-0 active:shadow-md focus-visible:outline-ink"
+					class="group inline-flex h-14 items-center gap-2.5 rounded-xl bg-ink px-7 text-lg font-bold text-primary shadow-lg shadow-ink/25 transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ink/30 focus-visible:outline-ink active:translate-y-0 active:shadow-md"
 				>
 					Get directions
 					<Icon
@@ -58,16 +58,20 @@ const fixes = [
 			</div>
 		</div>
 
-		<div class="relative min-h-72 animate-rise overflow-hidden rounded-t-3xl bg-ink rise-delay-2 lg:col-span-5 lg:self-end">
-			<img
-				src="/photos/pc1.webp"
-				alt="The PC Tune-Ups storefront on Veterans Blvd, with the green sign above the door"
-				width="1360"
-				height="1020"
-				class="absolute inset-0 size-full object-cover object-[56%_50%]"
-				fetchpriority="high"
-			/>
-			<div class="aspect-16/10 lg:aspect-4/5"></div>
+		<div class="relative h-80 animate-rise overflow-hidden rounded-t-3xl bg-ink/10 rise-delay-2 lg:col-span-5 lg:h-auto lg:min-h-[28rem] lg:self-stretch">
+			<iframe
+				title={`Map of ${shop.name} at ${address}`}
+				src={mapEmbed}
+				class="absolute inset-0 size-full border-0 max-lg:pointer-events-none"
+				referrerpolicy="no-referrer-when-downgrade"
+			></iframe>
+			<a
+				href={directionsLink}
+				target="_blank"
+				rel="noreferrer"
+				aria-label={`Open directions to ${address}`}
+				class="absolute inset-0 lg:hidden"
+			></a>
 		</div>
 	</div>
 

@@ -37,21 +37,18 @@ const services = [
 ]
 ---
 
-<section
-	id="services"
-	class="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-12 lg:gap-12 lg:py-28"
->
-	<div class="lg:sticky lg:top-12 lg:col-span-4 lg:self-start">
-		<h2 class="font-display text-6xl text-ink sm:text-7xl">What we fix</h2>
-		<p class="mt-5 max-w-sm text-lg/relaxed text-muted-foreground">
-			Not sure it is fixable? Bring it by. We will look at it at the counter.
+<section id="services" class="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
+	<div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-2">
+		<h2 class="font-display text-5xl text-ink sm:text-6xl">What we fix</h2>
+		<p class="text-lg text-muted-foreground">
+			Not sure it is fixable? Bring it by.
 		</p>
 	</div>
-	<ul class="divide-y divide-ink/15 border-y border-ink/15 lg:col-span-8">
+	<ul class="mt-8 grid gap-x-12 border-t border-ink/15 md:grid-cols-2">
 		{services.map(({ title, description }) => (
-			<li class="grid gap-1 py-5 sm:grid-cols-5 sm:gap-8">
-				<h3 class="text-xl font-bold text-ink sm:col-span-2">{title}</h3>
-				<p class="text-base/relaxed text-muted-foreground sm:col-span-3">
+			<li class="border-b border-ink/15 py-5">
+				<h3 class="text-xl font-bold text-ink">{title}</h3>
+				<p class="mt-1 text-base/relaxed text-muted-foreground">
 					{description}
 				</p>
 			</li>
