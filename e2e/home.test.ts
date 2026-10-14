@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test'
 
-// Wednesday 1 PM in New Orleans, so the open-status pill renders the same text on every run.
 test.beforeEach(async ({ page }) => {
 	// The live map embed changes with Google's tiles, so snapshots use a blank frame.
 	await page.route('https://www.google.com/maps*', (route) =>
@@ -9,7 +8,6 @@ test.beforeEach(async ({ page }) => {
 			body: '<body style="margin:0;background:#dfe3e8"></body>',
 		}),
 	)
-	await page.clock.setFixedTime(new Date('2026-10-14T18:00:00Z'))
 	await page.goto('/', { waitUntil: 'networkidle' })
 	await expect(
 		page.getByRole('link', { name: 'Get directions' }).first(),

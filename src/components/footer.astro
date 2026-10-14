@@ -1,6 +1,12 @@
 ---
 import { socialIcons } from '../lib/social-icons'
-import { address, directionsLink, shop, socialLinks } from '../lib/shop'
+import {
+	address,
+	directionsLink,
+	hoursSummary,
+	shop,
+	socialLinks,
+} from '../lib/shop'
 import Icon from './icon.astro'
 
 const currentYear = new Date().getFullYear()
@@ -18,7 +24,7 @@ const link =
 					{address}
 				</a>
 			</p>
-			<p class="text-ink-foreground/70">Mon–Sat 10 AM–6 PM · Closed Sunday</p>
+			<p class="text-ink-foreground/70">{hoursSummary}</p>
 		</div>
 		<div class="space-y-1">
 			<p>

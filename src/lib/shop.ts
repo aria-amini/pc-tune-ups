@@ -6,13 +6,16 @@ export const shop = {
 	street: '3943 Veterans Blvd',
 	city: 'Metairie',
 	region: 'LA',
-	timeZone: 'America/Chicago',
-	opensAt: 10,
-	closesAt: 18,
 } as const
 
-// Weekday indexes follow Date#getDay: 0 is Sunday.
-export const openDays: number[] = [1, 2, 3, 4, 5, 6]
+export const hours = [
+	{ days: 'Mon–Sat', time: '10 AM–6 PM' },
+	{ days: 'Sunday', time: 'Closed' },
+]
+
+export const hoursSummary = hours
+	.map(({ days, time }) => `${days} ${time}`)
+	.join(' · ')
 
 export const address = `${shop.street}, ${shop.city}, ${shop.region}`
 

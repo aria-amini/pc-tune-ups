@@ -1,7 +1,6 @@
 ---
-import { address, directionsLink, mapEmbed, shop } from '../lib/shop'
+import { address, directionsLink, hours, mapEmbed, shop } from '../lib/shop'
 import Icon from './icon.astro'
-import OpenStatus from './open-status.astro'
 
 const fixes = [
 	'Laptops',
@@ -47,8 +46,15 @@ const fixes = [
 						class="size-6 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
 					/>
 				</a>
+				<dl class="space-y-0.5 text-sm">
+					{hours.map(({ days, time }) => (
+						<div class="flex gap-3">
+							<dt class="w-16 font-semibold">{days}</dt>
+							<dd class="text-ink/80">{time}</dd>
+						</div>
+					))}
+				</dl>
 			</div>
-			<OpenStatus class="mt-5 animate-rise rise-delay-3" />
 		</div>
 
 		<div class="mt-6 mb-12 flex animate-rise flex-col overflow-hidden rounded-3xl border-2 border-ink bg-ink shadow-xl shadow-ink/25 rise-delay-2 lg:col-span-5 lg:mt-0 lg:mb-16 lg:self-stretch">
