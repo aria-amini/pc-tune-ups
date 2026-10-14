@@ -58,20 +58,39 @@ const fixes = [
 			</div>
 		</div>
 
-		<div class="relative h-80 animate-rise overflow-hidden rounded-t-3xl bg-ink/10 rise-delay-2 lg:col-span-5 lg:h-auto lg:min-h-[28rem] lg:self-stretch">
-			<iframe
-				title={`Map of ${shop.name} at ${address}`}
-				src={mapEmbed}
-				class="absolute inset-0 size-full border-0 max-lg:pointer-events-none"
-				referrerpolicy="no-referrer-when-downgrade"
-			></iframe>
-			<a
-				href={directionsLink}
-				target="_blank"
-				rel="noreferrer"
-				aria-label={`Open directions to ${address}`}
-				class="absolute inset-0 lg:hidden"
-			></a>
+		<div class="mt-6 mb-12 flex animate-rise flex-col overflow-hidden rounded-3xl border-2 border-ink bg-ink shadow-xl shadow-ink/25 rise-delay-2 lg:col-span-5 lg:mt-0 lg:mb-16 lg:self-stretch">
+			<div class="relative h-72 bg-primary-soft lg:h-auto lg:min-h-80 lg:flex-1">
+				<iframe
+					title={`Map of ${shop.name} at ${address}`}
+					src={mapEmbed}
+					class="absolute inset-0 size-full border-0 max-lg:pointer-events-none"
+					referrerpolicy="no-referrer-when-downgrade"
+				></iframe>
+				<a
+					href={directionsLink}
+					target="_blank"
+					rel="noreferrer"
+					aria-label={`Open directions to ${address}`}
+					class="absolute inset-0 lg:hidden"
+				></a>
+			</div>
+			<div class="flex items-center gap-4 p-3 text-ink-foreground">
+				<div class="aspect-4/3 w-24 shrink-0 overflow-hidden rounded-lg">
+					<img
+						src="/photos/pc1.webp"
+						alt="The PC Tune-Ups storefront, with the green sign above the door"
+						width="1360"
+						height="1020"
+						class="size-full origin-center scale-150 object-cover"
+					/>
+				</div>
+				<p class="text-sm/snug">
+					<span class="block font-bold">{shop.street}</span>
+					<span class="text-ink-foreground/70">
+						Look for the green sign above the door.
+					</span>
+				</p>
+			</div>
 		</div>
 	</div>
 
