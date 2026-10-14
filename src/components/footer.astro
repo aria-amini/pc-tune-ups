@@ -1,11 +1,10 @@
 ---
-import type { icons } from 'lucide'
-
+import { socialIcons } from '../lib/social-icons'
 import Icon from './icon.astro'
 
 const currentYear = new Date().getFullYear()
 
-const socialLinks: { name: string; href: string; icon: keyof typeof icons }[] =
+const socialLinks: { name: string; href: string; icon: keyof typeof socialIcons }[] =
 	[
 		{
 			name: 'Facebook',
@@ -46,7 +45,7 @@ const socialLinks: { name: string; href: string; icon: keyof typeof icons }[] =
 					rel="noreferrer"
 					aria-label={name}
 				>
-					<Icon name={icon} class="h-5 w-5" />
+					<Icon node={socialIcons[icon]} class="h-5 w-5" />
 				</a>
 			))}
 		</div>
