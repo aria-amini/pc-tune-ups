@@ -1,11 +1,11 @@
-@import '@fontsource-variable/dm-sans';
+@import '@fontsource-variable/archivo/wdth.css';
 @import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
 	--font-sans:
-		'DM Sans Variable', ui-sans-serif, system-ui, sans-serif,
+		'Archivo Variable', ui-sans-serif, system-ui, sans-serif,
 		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
@@ -17,6 +17,8 @@
 	--color-card: var(--card);
 	--color-muted-foreground: var(--muted-foreground);
 	--color-primary: var(--primary);
+	--color-ink: var(--ink);
+	--color-ink-foreground: var(--ink-foreground);
 	--color-primary-foreground: var(--primary-foreground);
 	--color-primary-hover: var(--primary-hover);
 	--color-primary-strong: var(--primary-strong);
@@ -34,7 +36,9 @@
 	--card: oklch(1 0 0);
 	--muted-foreground: oklch(0.444 0.011 73.639);
 	--primary: oklch(0.768 0.233 130.85);
-	--primary-foreground: oklch(1 0 0);
+	--ink: oklch(0.2 0.03 135);
+	--ink-foreground: oklch(0.97 0.01 125);
+	--primary-foreground: var(--ink);
 	--primary-hover: oklch(0.648 0.2 131.684);
 	--primary-strong: oklch(0.532 0.157 131.589);
 	--primary-soft: oklch(0.986 0.031 120.757);
@@ -72,5 +76,88 @@
 	h5,
 	h6 {
 		@apply font-bold;
+	}
+
+	::selection {
+		background: var(--ink);
+		color: var(--primary);
+	}
+
+	html {
+		accent-color: var(--primary-strong);
+		scroll-behavior: smooth;
+	}
+
+	a,
+	button {
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	:focus-visible {
+		outline: 3px solid var(--ink);
+		outline-offset: 3px;
+	}
+}
+
+@utility font-display {
+	font-stretch: 64%;
+	font-weight: 800;
+	letter-spacing: -0.01em;
+	line-height: 0.92;
+	text-transform: uppercase;
+	text-wrap: balance;
+}
+
+@utility rise-delay-1 {
+	animation-delay: 90ms;
+}
+
+@utility rise-delay-2 {
+	animation-delay: 180ms;
+}
+
+@utility rise-delay-3 {
+	animation-delay: 260ms;
+}
+
+@utility pb-safe {
+	padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+@utility on-ink-focus {
+	&:focus-visible {
+		outline-color: var(--primary);
+	}
+}
+
+@theme {
+	--text-hero: clamp(3.5rem, 8.5vw, 6rem);
+	--shadow-bar: 0 -8px 24px oklch(0.2 0.03 135 / 0.3);
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	--animate-rise: rise 0.8s var(--ease-out-expo) both;
+
+	@keyframes rise {
+		from {
+			opacity: 0;
+			transform: translateY(1.25rem);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	::before,
+	::after {
+		animation-duration: 0.01ms !important;
+		animation-delay: 0s !important;
+		transition-duration: 0.01ms !important;
 	}
 }

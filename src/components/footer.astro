@@ -1,56 +1,62 @@
 ---
 import { socialIcons } from '../lib/social-icons'
+import {
+	address,
+	directionsLink,
+	hoursSummary,
+	shop,
+	socialLinks,
+} from '../lib/shop'
 import Icon from './icon.astro'
 
 const currentYear = new Date().getFullYear()
 
-const socialLinks: {
-	name: string
-	href: string
-	icon: keyof typeof socialIcons
-}[] = [
-	{
-		name: 'Facebook',
-		href: 'https://www.facebook.com/PCTuneUps365/',
-		icon: 'Facebook',
-	},
-	{ name: 'Twitter', href: 'https://twitter.com/pctuneups', icon: 'Twitter' },
-	{
-		name: 'Instagram',
-		href: 'https://www.instagram.com/pc_tuneups/',
-		icon: 'Instagram',
-	},
-	{
-		name: 'LinkedIn',
-		href: 'https://www.linkedin.com/company/pctuneups',
-		icon: 'Linkedin',
-	},
-	{
-		name: 'YouTube',
-		href: 'https://www.youtube.com/channel/UCLBMfHkUR9qu9WyNBGigPlg',
-		icon: 'Youtube',
-	},
-]
+const link =
+	'rounded-md underline decoration-2 decoration-ink-foreground/30 underline-offset-4 hover:decoration-primary hover:text-primary'
 ---
 
-<footer class="border-t border-border bg-card/90 backdrop-blur-sm">
-	<div class="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-8">
-		<div class="space-y-2">
-			<p class="text-base font-semibold text-foreground">PC Tune-Ups</p>
-			<p>© {currentYear} PC Tune-Ups. All rights reserved.</p>
-		</div>
-		<div class="flex flex-wrap items-center gap-4">
-			{socialLinks.map(({ name, href, icon }) => (
-				<a
-					class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary-soft hover:text-primary-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-hover"
-					href={href}
-					target="_blank"
-					rel="noreferrer"
-					aria-label={name}
-				>
-					<Icon node={socialIcons[icon]} class="h-5 w-5" />
+<footer class="bg-ink text-ink-foreground max-md:pb-20">
+	<div class="mx-auto grid max-w-7xl gap-8 px-5 py-10 text-sm sm:px-8 md:grid-cols-3">
+		<div class="space-y-1">
+			<p class="text-base font-bold">PC Tune-Ups</p>
+			<p>
+				<a href={directionsLink} target="_blank" rel="noreferrer" class={link}>
+					{address}
 				</a>
-			))}
+			</p>
+			<p class="text-ink-foreground/70">{hoursSummary}</p>
+		</div>
+		<div class="space-y-1">
+			<p>
+				<a href={shop.phoneHref} class={link}>
+					{shop.phone}
+				</a>
+			</p>
+			<p>
+				<a href={`mailto:${shop.email}`} class={link}>
+					{shop.email}
+				</a>
+			</p>
+		</div>
+		<div class="flex flex-col gap-3 md:items-end">
+			<ul class="flex flex-wrap items-center gap-1">
+				{socialLinks.map(({ name, href, icon }) => (
+					<li>
+						<a
+							class="on-ink-focus inline-flex size-11 items-center justify-center rounded-lg text-ink-foreground/80 transition-colors duration-200 hover:bg-ink-foreground/10 hover:text-primary"
+							href={href}
+							target="_blank"
+							rel="noreferrer"
+							aria-label={name}
+						>
+							<Icon node={socialIcons[icon]} class="size-5" />
+						</a>
+					</li>
+				))}
+			</ul>
+			<p class="text-ink-foreground/70">
+				© {currentYear} PC Tune-Ups. All rights reserved.
+			</p>
 		</div>
 	</div>
 </footer>

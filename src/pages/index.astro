@@ -1,8 +1,8 @@
 ---
-import Divider from '../components/divider.astro'
 import Footer from '../components/footer.astro'
 import Header from '../components/header.astro'
 import Hero from '../components/hero.astro'
+import MobileBar from '../components/mobile-bar.astro'
 import Services from '../components/services.astro'
 import Testimonials from '../components/testimonials.astro'
 import Base from '../layouts/base.astro'
@@ -10,12 +10,11 @@ import Base from '../layouts/base.astro'
 
 <Base>
 	<Header />
-	<main class="mx-auto flex max-w-5xl flex-col gap-16 p-6 sm:p-10 lg:p-16">
+	<main>
 		<Hero />
-		<Divider />
 		<Services />
-		<Divider />
 		<Testimonials />
 	</main>
 	<Footer />
+	<MobileBar />
 </Base>

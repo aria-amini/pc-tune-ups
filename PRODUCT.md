@@ -11,19 +11,20 @@ web
 Local people in Metairie and Greater New Orleans with a broken or slow phone,
 tablet, or computer. They want to know fast whether this shop fixes their
 device, where it is, and whether it is open now. Small businesses and homeowners
-use the networking, on-site, and Control4 services.
+use the networking and on-site services.
 
 ## Product Purpose
 
 PC Tune-Ups is a walk-in device repair shop. The landing page exists to turn a
 local search into a store visit. Success means the visitor gets directions and
-walks in during open hours. Calling the shop is the secondary action.
+walks in during open hours. Calling the shop is secondary: the number stays in
+the header, the mobile action bar, and the footer, never in the hero.
 
 ## Positioning
 
 A neighborhood repair counter with 10 years in business on Veterans Blvd. One
-shop covers computers, Apple devices, data recovery, networking, custom builds,
-and Control4 home automation.
+shop covers computers, Apple devices, data recovery, networking, and custom
+builds.
 
 ## Operating Context
 
@@ -33,7 +34,7 @@ and Control4 home automation.
 - Hours: Mon–Sat, 10AM–6PM. Closed Sunday.
 - Services: computer and laptop repair, Apple device repair, data backup and
   recovery, networking and on-site support, virus and spyware removal, hardware
-  upgrades, custom-built computers, Control4 home automation.
+  upgrades, custom-built computers.
 
 ## Capabilities and Constraints
 
