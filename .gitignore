@@ -1,0 +1,8 @@
+node_modules
+dist
+.astro
+.wrangler
+.playwright
+.dev.vars*
+.env*.local
+.DS_Store
