@@ -148,6 +148,13 @@
 	}
 }
 
+/* Keep development tools clear of the mobile directions and call bar. */
+@media (width < 48rem) {
+	astro-dev-toolbar {
+		display: none;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
