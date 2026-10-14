@@ -6,4 +6,10 @@
 		"directory": "./dist",
 		"not_found_handling": "404-page",
 	},
+	// pc-tune-ups.com redirects here through a Cloudflare Redirect Rule on its
+	// zone, so it has no route.
+	"routes": [
+		{ "pattern": "pctuneupsnola.com", "custom_domain": true },
+		{ "pattern": "www.pctuneupsnola.com", "custom_domain": true },
+	],
 }
