@@ -1,0 +1,33 @@
+{
+	"name": "pc-tune-ups",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "wrangler dev",
+		"deploy": "astro build && wrangler deploy",
+		"check": "vp check && astro check",
+		"e2e": "playwright test",
+		"e2e:update": "playwright test --update-snapshots",
+		"report": "playwright show-report .playwright/report"
+	},
+	"dependencies": {
+		"@fontsource-variable/dm-sans": "5.2.8",
+		"@tailwindcss/vite": "4.2.1",
+		"astro": "^7.3.8",
+		"embla-carousel": "8.6.0",
+		"lucide": "0.577.0",
+		"tailwindcss": "4.2.1"
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.9.10",
+		"@playwright/test": "^1.64.0",
+		"@types/node": "^24.19.2",
+		"typescript": "^6.0.3",
+		"vite-plus": "1.1.0",
+		"wrangler": "^4.150.0"
+	},
+	"packageManager": "pnpm@12.8.1+sha512.f64ba907507f5ceafe06c8d38e6052d0179444580ec1279ddd5bfc11cb48aa8a2644b66598e07e761da84872a9fc57d5f902b87fa49d024198d558612aabbe45"
+}
