@@ -1,49 +1,55 @@
 ---
+import { shop } from '../lib/shop'
 import Icon from './icon.astro'
-import StorePhotos from './store-photos.astro'
+import OpenStatus from './open-status.astro'
 ---
 
-<section class="space-y-8 rounded-3xl bg-linear-to-br from-card via-primary-soft to-background p-4 shadow-xl ring-1 shadow-foreground/10 ring-primary-muted/50 sm:p-6 md:p-8 lg:p-10">
-	<div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
-		<div class="order-1 space-y-6">
-			<div class="flex items-center gap-4">
-				<img
-					src="/logo.png"
-					alt="PC Tune-Ups vintage computer illustration"
-					class="h-24 items-start object-contain object-left"
-					width="1024"
-					height="1024"
-					decoding="async"
-				/>
-			</div>
-
-			<p class="max-w-3xl text-xl leading-relaxed text-foreground/85 sm:text-2xl">
-				Your neighborhood team for fast, friendly computer and device repair in
-				the Greater New Orleans area—with{' '}
-				<span class="font-semibold text-primary-strong">10+ years</span> of
-				hands-on experience.
+<section class="mx-auto grid max-w-6xl gap-10 px-6 py-10 sm:px-10 lg:grid-cols-12 lg:gap-14 lg:py-16">
+	<div class="space-y-8 lg:col-span-7 lg:py-6">
+		<div class="space-y-5">
+			<h1 class="text-4xl leading-none font-bold tracking-tight sm:text-5xl lg:text-6xl">
+				Walk-in computer and device repair in Metairie.
+			</h1>
+			<p class="max-w-xl text-lg text-muted-foreground sm:text-xl">
+				We fix laptops, desktops, iPhones, iPads, and tablets. We also do data
+				recovery, networking, custom builds, and Control4 home automation.
 			</p>
-
-			<div class="flex flex-wrap gap-4 pt-4">
-				<a
-					href="tel:15048851635"
-					class="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-lg font-semibold text-primary-foreground transition-all duration-200 hover:-translate-y-px hover:bg-primary-hover hover:shadow-lg hover:shadow-primary-muted/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-hover"
-				>
-					<Icon name="Phone" class="h-6 w-6" />
-					<span>Call Now</span>
-				</a>
-				<a
-					href="mailto:info@afcom-inc.com"
-					class="inline-flex items-center gap-2 rounded-full border border-input bg-card px-7 py-3 text-lg font-semibold text-foreground transition-all duration-200 hover:-translate-y-px hover:bg-primary-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-hover"
-				>
-					<Icon name="Mail" class="h-6 w-6 text-primary-hover" />
-					<span>Email Us</span>
-				</a>
-			</div>
 		</div>
 
-		<div class="order-2 overflow-hidden rounded-2xl border border-border bg-card shadow-lg shadow-foreground/15">
-			<StorePhotos />
+		<div class="flex flex-wrap gap-3">
+			<a
+				href={shop.mapUrl}
+				target="_blank"
+				rel="noreferrer"
+				class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-lg font-semibold text-primary-foreground transition-colors duration-200 hover:bg-secondary hover:text-secondary-foreground"
+			>
+				<Icon name="MapPin" class="size-5" />
+				Get directions
+			</a>
+			<a
+				href={shop.phoneHref}
+				class="inline-flex items-center gap-2 rounded-lg border border-foreground/30 px-6 py-3.5 text-lg font-semibold tabular-nums transition-colors duration-200 hover:bg-muted"
+			>
+				<Icon name="Phone" class="size-5" />
+				{shop.phone}
+			</a>
+		</div>
+
+		<p class="text-muted-foreground">
+			{shop.street}, {shop.city}, {shop.region}. In business for 10 years.
+		</p>
+	</div>
+
+	<div class="lg:col-span-5">
+		<img
+			src="/photos/pc1.webp"
+			alt="The PC Tune-Ups storefront on Veterans Blvd, under the green PC Tune-Ups sign."
+			width="1359"
+			height="1019"
+			class="reveal-photo aspect-4/3 w-full rounded-xl object-cover"
+		/>
+		<div class="relative mt-4 lg:-mt-14 lg:ml-10">
+			<OpenStatus />
 		</div>
 	</div>
 </section>

@@ -1,0 +1,138 @@
+---
+import { shop } from '../lib/shop'
+---
+
+<div
+	data-open-status
+	data-time-zone={shop.timeZone}
+	data-open-days={shop.openDays.join(',')}
+	data-open-hour={shop.openHour}
+	data-close-hour={shop.closeHour}
+	class="group space-y-5 rounded-xl bg-secondary p-6 text-secondary-foreground sm:p-7"
+>
+	<div class="flex items-center gap-3">
+		<span
+			class="size-3 shrink-0 rounded-full bg-secondary-foreground/40 group-data-open:bg-primary"
+			aria-hidden="true"
+		></span>
+		<div>
+			<p data-status-label class="font-display text-2xl font-bold">
+				Open Monday to Saturday
+			</p>
+			<p data-status-detail class="text-secondary-foreground/75">
+				10AM to 6PM. Closed Sunday.
+			</p>
+		</div>
+	</div>
+	<dl class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 border-t border-secondary-foreground/20 pt-5 tabular-nums">
+		<dt class="text-secondary-foreground/75">Mon–Sat</dt>
+		<dd class="text-right font-semibold text-nowrap">10AM to 6PM</dd>
+		<dt class="text-secondary-foreground/75">Sun</dt>
+		<dd class="text-right font-semibold">Closed</dd>
+	</dl>
+</div>
+
+<script>
+	const weekdayNames = [
+		'Sunday',
+		'Monday',
+		'Tuesday',
+		'Wednesday',
+		'Thursday',
+		'Friday',
+		'Saturday',
+	]
+
+	const formatHour = (hour: number) =>
+		`${hour % 12 === 0 ? 12 : hour % 12}${hour < 12 ? 'AM' : 'PM'}`
+
+	const zonedNow = (timeZone: string | undefined) => {
+		const parts = new Intl.DateTimeFormat('en-US', {
+			timeZone,
+			weekday: 'long',
+			hour: 'numeric',
+			minute: 'numeric',
+			second: 'numeric',
+			hourCycle: 'h23',
+		}).formatToParts(new Date())
+
+		const read = (type: Intl.DateTimeFormatPartTypes) =>
+			parts.find((part) => part.type === type)?.value
+
+		const weekday = weekdayNames.indexOf(read('weekday') ?? '')
+		const hour = Number(read('hour'))
+		const minute = Number(read('minute'))
+		const second = Number(read('second'))
+
+		if (weekday < 0 || [hour, minute, second].some(Number.isNaN)) return
+
+		return { weekday, hour, minute, second }
+	}
+
+	const setUp = (root: HTMLElement) => {
+		const label = root.querySelector<HTMLElement>('[data-status-label]')
+		const detail = root.querySelector<HTMLElement>('[data-status-detail]')
+
+		if (!label || !detail) return
+
+		const openDays = (root.dataset.openDays ?? '').split(',').map(Number)
+		const openHour = Number(root.dataset.openHour)
+		const closeHour = Number(root.dataset.closeHour)
+		let timer: number | undefined
+
+		const render = (weekday: number, hour: number) => {
+			const isOpenDay = openDays.includes(weekday)
+
+			if (isOpenDay && hour >= openHour && hour < closeHour) {
+				root.toggleAttribute('data-open', true)
+				label.textContent = 'Open now'
+				detail.textContent = `Open until ${formatHour(closeHour)} today.`
+
+				return
+			}
+
+			root.toggleAttribute('data-open', false)
+			label.textContent = 'Closed now'
+
+			if (isOpenDay && hour < openHour) {
+				detail.textContent = `Opens at ${formatHour(openHour)} today.`
+
+				return
+			}
+
+			const offset = [1, 2, 3, 4, 5, 6, 7].find((days) =>
+				openDays.includes((weekday + days) % 7),
+			)
+
+			if (offset === undefined) return
+
+			const nextDay = (weekday + offset) % 7
+			detail.textContent = `Opens ${offset === 1 ? 'tomorrow' : weekdayNames[nextDay]} at ${formatHour(openHour)}.`
+		}
+
+		// Background tabs throttle timers, so the visibility listener also refreshes.
+		const update = () => {
+			window.clearTimeout(timer)
+
+			const now = zonedNow(root.dataset.timeZone)
+
+			if (!now) return
+
+			render(now.weekday, now.hour)
+
+			const msToNextHour = (3600 - now.minute * 60 - now.second) * 1000
+			timer = window.setTimeout(update, msToNextHour + 250)
+		}
+
+		document.addEventListener('visibilitychange', () => {
+			if (document.visibilityState === 'visible') update()
+		})
+		update()
+	}
+
+	for (const root of document.querySelectorAll<HTMLElement>(
+		'[data-open-status]',
+	)) {
+		setUp(root)
+	}
+</script>

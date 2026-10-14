@@ -1,12 +1,13 @@
 ---
+const featured = {
+	quote:
+		"I highly recommend. Had two of my business pc's crash on me at two different times and these guy got my computers back up and running smoother then it has ever been before.",
+	name: 'Rory',
+	role: 'Business Owner',
+	avatar: '/reviews/rory-150x150.jpg',
+}
+
 const testimonials = [
-	{
-		quote:
-			"I highly recommend. Had two of my business pc's crash on me at two different times and these guy got my computers back up and running smoother then it has ever been before.",
-		name: 'Rory',
-		role: 'Business Owner',
-		avatar: '/reviews/rory-150x150.jpg',
-	},
 	{
 		quote: 'Great group of people just got my PC back and it works flawless',
 		name: 'Damian',
@@ -21,7 +22,7 @@ const testimonials = [
 	},
 	{
 		quote:
-			'We had problems with our router  and they knew exactly what was wrong and fixed it.',
+			'We had problems with our router and they knew exactly what was wrong and fixed it.',
 		name: "Eddie O'Brian",
 		role: 'Co-founder, Break-thru Productions',
 		avatar: '/reviews/break-150x83.jpg',
@@ -29,32 +30,54 @@ const testimonials = [
 ]
 ---
 
-<section class="space-y-8">
-	<h2 class="text-center text-4xl font-bold tracking-tight text-foreground">
-		Testimonials
-	</h2>
-	<div class="mx-auto max-w-4xl columns-1 gap-6 sm:columns-2">
-		{testimonials.map(({ name, quote, avatar, role }) => (
-			<article class="mb-6 inline-block w-full break-inside-avoid rounded-2xl border border-border bg-card p-6 shadow-sm">
-				<p class="mb-4 leading-relaxed text-muted-foreground">{quote}</p>
-				<div class="flex items-center gap-3 border-t border-border pt-4">
-					<span
-						data-slot="avatar"
-						class="relative flex size-8 shrink-0 overflow-hidden rounded-2xl"
-					>
-						<img
-							data-slot="avatar-image"
-							class="aspect-square size-full"
-							src={avatar}
-							alt={`${name} avatar`}
-						/>
+<section class="border-t border-border">
+	<div class="mx-auto max-w-6xl space-y-10 px-6 py-16 sm:px-10 lg:py-20">
+		<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
+			What customers say
+		</h2>
+
+		<figure class="max-w-4xl space-y-6">
+			<blockquote class="font-display text-2xl leading-snug font-semibold tracking-tight text-pretty sm:text-3xl">
+				“{featured.quote}”
+			</blockquote>
+			<figcaption class="flex items-center gap-3">
+				<img
+					src={featured.avatar}
+					alt=""
+					width="150"
+					height="150"
+					loading="lazy"
+					class="size-11 rounded-full object-cover"
+				/>
+				<span>
+					<span class="block font-semibold">{featured.name}</span>
+					<span class="block text-sm text-muted-foreground">
+						{featured.role}
 					</span>
-					<div>
-						<p class="text-sm font-semibold text-foreground">{name}</p>
-						<p class="text-xs text-muted-foreground">{role}</p>
-					</div>
-				</div>
-			</article>
-		))}
+				</span>
+			</figcaption>
+		</figure>
+
+		<div class="grid gap-x-10 gap-y-8 md:grid-cols-3">
+			{testimonials.map(({ name, quote, avatar, role }) => (
+				<figure class="flex flex-col justify-between gap-5 border-t border-border pt-6">
+					<blockquote class="text-lg text-pretty">“{quote}”</blockquote>
+					<figcaption class="flex items-center gap-3">
+						<img
+							src={avatar}
+							alt=""
+							width="150"
+							height="150"
+							loading="lazy"
+							class="size-10 rounded-full object-cover"
+						/>
+						<span>
+							<span class="block font-semibold">{name}</span>
+							<span class="block text-sm text-muted-foreground">{role}</span>
+						</span>
+					</figcaption>
+				</figure>
+			))}
+		</div>
 	</div>
 </section>

@@ -1,0 +1,48 @@
+---
+import { shop } from '../lib/shop'
+import Icon from './icon.astro'
+---
+
+<section class="bg-secondary text-secondary-foreground">
+	<div class="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:px-10 lg:grid-cols-12 lg:gap-14 lg:py-24">
+		<div class="space-y-6 lg:col-span-7">
+			<h2 class="text-4xl leading-none font-bold tracking-tight sm:text-5xl lg:text-6xl">
+				Come by {shop.street}.
+			</h2>
+			<p class="max-w-xl text-lg text-secondary-foreground/75 sm:text-xl">
+				{shop.city}, {shop.region}. Open Monday to Saturday, 10AM to 6PM. Closed
+				Sunday. Look for the green PC Tune-Ups sign.
+			</p>
+			<a
+				href={shop.mapUrl}
+				target="_blank"
+				rel="noreferrer"
+				class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-lg font-semibold text-primary-foreground transition-colors duration-200 hover:bg-secondary-foreground"
+			>
+				<Icon name="MapPin" class="size-5" />
+				Get directions
+			</a>
+		</div>
+
+		<ul class="space-y-5 text-lg lg:col-span-5 lg:pt-3">
+			<li>
+				<a
+					href={shop.phoneHref}
+					class="inline-flex items-center gap-3 font-semibold tabular-nums hover:text-primary"
+				>
+					<Icon name="Phone" class="size-5 text-primary" />
+					{shop.phone}
+				</a>
+			</li>
+			<li>
+				<a
+					href={`mailto:${shop.email}`}
+					class="inline-flex items-center gap-3 font-semibold break-all hover:text-primary"
+				>
+					<Icon name="Mail" class="size-5 shrink-0 text-primary" />
+					{shop.email}
+				</a>
+			</li>
+		</ul>
+	</div>
+</section>

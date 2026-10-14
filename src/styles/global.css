@@ -1,64 +1,54 @@
 @import '@fontsource-variable/dm-sans';
+@import '@fontsource-variable/bricolage-grotesque';
 @import 'tailwindcss';
-
-@custom-variant dark (&:is(.dark *));
 
 @theme inline {
 	--font-sans:
 		'DM Sans Variable', ui-sans-serif, system-ui, sans-serif,
 		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-display:
+		'Bricolage Grotesque Variable', 'DM Sans Variable', ui-sans-serif,
+		system-ui, sans-serif;
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
-	--color-destructive: var(--destructive);
 	--color-card: var(--card);
+	--color-muted: var(--muted);
 	--color-muted-foreground: var(--muted-foreground);
 	--color-primary: var(--primary);
 	--color-primary-foreground: var(--primary-foreground);
-	--color-primary-hover: var(--primary-hover);
-	--color-primary-strong: var(--primary-strong);
-	--color-primary-soft: var(--primary-soft);
-	--color-primary-muted: var(--primary-muted);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-accent: var(--accent);
 	--color-border: var(--border);
-	--color-input: var(--input);
 	--color-ring: var(--ring);
 }
 
+/* Paper, sign green, and the lime from the storefront sign. */
 :root {
-	--radius: 0.625rem;
-	--background: oklch(0.985 0.001 106.423);
-	--foreground: oklch(0.216 0.006 56.043);
-	--card: oklch(1 0 0);
-	--muted-foreground: oklch(0.444 0.011 73.639);
-	--primary: oklch(0.768 0.233 130.85);
-	--primary-foreground: oklch(1 0 0);
-	--primary-hover: oklch(0.648 0.2 131.684);
-	--primary-strong: oklch(0.532 0.157 131.589);
-	--primary-soft: oklch(0.986 0.031 120.757);
-	--primary-muted: oklch(0.938 0.127 124.321);
-	--destructive: oklch(0.577 0.245 27.325);
-	--border: oklch(0.922 0 0);
-	--input: oklch(0.869 0.005 56.366);
-	--ring: oklch(0.708 0 0);
-}
-
-.dark {
-	--background: oklch(0.145 0 0);
-	--foreground: oklch(0.985 0 0);
-	--destructive: oklch(0.704 0.191 22.216);
-	--border: oklch(1 0 0 / 10%);
-	--input: oklch(1 0 0 / 15%);
-	--ring: oklch(0.556 0 0);
+	--radius: 0.75rem;
+	--background: oklch(0.98 0.01 110);
+	--foreground: oklch(0.22 0.04 150);
+	--card: oklch(0.995 0.005 110);
+	--muted: oklch(0.945 0.015 110);
+	--muted-foreground: oklch(0.47 0.035 150);
+	--primary: oklch(0.86 0.22 128);
+	--primary-foreground: oklch(0.22 0.04 150);
+	--secondary: oklch(0.27 0.06 152);
+	--secondary-foreground: oklch(0.97 0.01 110);
+	--accent: oklch(0.45 0.14 142);
+	--border: oklch(0.89 0.018 110);
+	--ring: oklch(0.5 0.15 140);
 }
 
 @layer base {
 	*,
 	::before,
 	::after {
-		@apply border-border outline-ring/50 box-border;
+		@apply border-border box-border;
 	}
 
 	body {
@@ -71,6 +61,35 @@
 	h4,
 	h5,
 	h6 {
-		@apply font-bold;
+		@apply font-display text-balance;
+	}
+
+	::selection {
+		@apply bg-primary text-primary-foreground;
+	}
+
+	:focus-visible {
+		@apply outline-ring outline-2 outline-offset-2;
+	}
+
+	a {
+		@apply underline-offset-4;
+	}
+}
+
+@keyframes reveal-photo {
+	from {
+		clip-path: inset(0 0 100% 0 round var(--radius-xl));
+	}
+	to {
+		clip-path: inset(0 0 0 0 round var(--radius-xl));
+	}
+}
+
+@utility reveal-photo {
+	animation: reveal-photo 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
 	}
 }
