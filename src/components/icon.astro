@@ -1,13 +1,13 @@
 ---
-import { icons } from 'lucide'
+import { type IconNode, icons } from 'lucide'
 
 interface Props {
-	name: keyof typeof icons
+	name?: keyof typeof icons
+	node?: IconNode
 	class?: string
 }
 
-const { name, class: className } = Astro.props
-const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
+const { name, node, class: className } = Astro.props
 ---
 
 <svg
@@ -20,10 +20,10 @@ const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
 	stroke-width="2"
 	stroke-linecap="round"
 	stroke-linejoin="round"
-	class:list={['lucide', `lucide-${kebabName}`, className]}
+	class={className}
 	aria-hidden="true"
 >
-	{icons[name].map(([Tag, attributes]) => (
+	{(node ?? (name ? icons[name] : [])).map(([Tag, attributes]) => (
 		<Tag {...attributes} />
 	))}
 </svg>

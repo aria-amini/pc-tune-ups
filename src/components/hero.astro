@@ -3,7 +3,7 @@ import Icon from './icon.astro'
 import StorePhotos from './store-photos.astro'
 ---
 
-<section class="space-y-8 rounded-3xl bg-linear-to-br from-white via-lime-50 to-stone-50 p-4 shadow-xl ring-1 shadow-stone-200/60 ring-lime-100 sm:p-6 md:p-8 lg:p-10">
+<section class="space-y-8 rounded-3xl bg-linear-to-br from-card via-primary-soft to-background p-4 shadow-xl ring-1 shadow-foreground/10 ring-primary-muted/50 sm:p-6 md:p-8 lg:p-10">
 	<div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
 		<div class="order-1 space-y-6">
 			<div class="flex items-center gap-4">
@@ -17,32 +17,32 @@ import StorePhotos from './store-photos.astro'
 				/>
 			</div>
 
-			<p class="max-w-3xl text-xl leading-relaxed text-stone-700 sm:text-2xl">
+			<p class="max-w-3xl text-xl leading-relaxed text-foreground/85 sm:text-2xl">
 				Your neighborhood team for fast, friendly computer and device repair in
 				the Greater New Orleans area—with{' '}
-				<span class="font-semibold text-lime-700">10+ years</span> of hands-on
-				experience.
+				<span class="font-semibold text-primary-strong">10+ years</span> of
+				hands-on experience.
 			</p>
 
 			<div class="flex flex-wrap gap-4 pt-4">
 				<a
 					href="tel:15048851635"
-					class="inline-flex items-center gap-2 rounded-full bg-lime-500 px-7 py-3 text-lg font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:bg-lime-600 hover:shadow-lg hover:shadow-lime-200/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
+					class="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-lg font-semibold text-primary-foreground transition-all duration-200 hover:-translate-y-px hover:bg-primary-hover hover:shadow-lg hover:shadow-primary-muted/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-hover"
 				>
 					<Icon name="Phone" class="h-6 w-6" />
 					<span>Call Now</span>
 				</a>
 				<a
 					href="mailto:info@afcom-inc.com"
-					class="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-7 py-3 text-lg font-semibold text-stone-900 transition-all duration-200 hover:-translate-y-px hover:bg-lime-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
+					class="inline-flex items-center gap-2 rounded-full border border-input bg-card px-7 py-3 text-lg font-semibold text-foreground transition-all duration-200 hover:-translate-y-px hover:bg-primary-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-hover"
 				>
-					<Icon name="Mail" class="h-6 w-6 text-lime-600" />
+					<Icon name="Mail" class="h-6 w-6 text-primary-hover" />
 					<span>Email Us</span>
 				</a>
 			</div>
 		</div>
 
-		<div class="order-2 overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-lg shadow-stone-300/40">
+		<div class="order-2 overflow-hidden rounded-2xl border border-border bg-card shadow-lg shadow-foreground/15">
 			<StorePhotos />
 		</div>
 	</div>

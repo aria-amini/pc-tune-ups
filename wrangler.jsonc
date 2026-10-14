@@ -2,12 +2,19 @@
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "pc-tune-ups",
 	"compatibility_date": "2026-10-01",
+	// Custom domains turn workers.dev off unless it is set here.
+	"workers_dev": true,
+	// Preview builds from Workers Builds run `wrangler preview`, which needs this
+	// block. preview_urls gives each Preview a workers.dev URL.
+	"previews": {},
+	"preview_urls": true,
 	"assets": {
 		"directory": "./dist",
 		"not_found_handling": "404-page",
 	},
-	// pc-tune-ups.com redirects here through a Cloudflare Redirect Rule on its
-	// zone, so it has no route.
+	// www is canonical. Redirect Rules on the zones send pctuneupsnola.com and
+	// pc-tune-ups.com to www before requests reach the Worker. The apex route
+	// keeps the site up if its rule is removed.
 	"routes": [
 		{ "pattern": "pctuneupsnola.com", "custom_domain": true },
 		{ "pattern": "www.pctuneupsnola.com", "custom_domain": true },
