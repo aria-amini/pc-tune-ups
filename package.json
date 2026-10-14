@@ -15,6 +15,7 @@
 		"fmt": "vp fmt && prettier --write \"**/*.astro\""
 	},
 	"dependencies": {
+		"@astrojs/sitemap": "^3.7.4",
 		"@fontsource-variable/dm-sans": "5.2.8",
 		"@tailwindcss/vite": "4.2.1",
 		"astro": "^7.3.8",
