@@ -8,10 +8,11 @@
 		"build": "astro build",
 		"preview": "wrangler dev",
 		"deploy": "astro build && wrangler deploy",
-		"check": "vp check && astro check",
+		"check": "vp check && prettier --check \"**/*.astro\" && astro check",
 		"e2e": "playwright test",
 		"e2e:update": "playwright test --update-snapshots",
-		"report": "playwright show-report .playwright/report"
+		"report": "playwright show-report .playwright/report",
+		"fmt": "vp fmt && prettier --write \"**/*.astro\""
 	},
 	"dependencies": {
 		"@fontsource-variable/dm-sans": "5.2.8",
@@ -25,6 +26,9 @@
 		"@astrojs/check": "^0.9.10",
 		"@playwright/test": "^1.64.0",
 		"@types/node": "^24.19.2",
+		"prettier": "3.9.10",
+		"prettier-plugin-astro": "1.1.1",
+		"prettier-plugin-tailwindcss": "0.8.1",
 		"typescript": "^6.0.3",
 		"vite-plus": "1.1.0",
 		"wrangler": "^4.150.0"

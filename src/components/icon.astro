@@ -23,5 +23,7 @@ const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
 	class:list={['lucide', `lucide-${kebabName}`, className]}
 	aria-hidden="true"
 >
-	{icons[name].map(([Tag, attributes]) => <Tag {...attributes} />)}
+	{icons[name].map(([Tag, attributes]) => (
+		<Tag {...attributes} />
+	))}
 </svg>

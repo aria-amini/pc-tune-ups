@@ -30,25 +30,23 @@ const buttonClass =
 >
 	<div class="overflow-hidden" data-slot="carousel-content">
 		<div class="-ml-4 flex">
-			{
-				storePhotos.map((photo, index) => (
-					<div
-						role="group"
-						aria-roledescription="slide"
-						data-slot="carousel-item"
-						class="min-w-0 shrink-0 grow-0 basis-full pl-4"
-					>
-						<div class="overflow-hidden rounded-2xl border border-white/10">
-							<img
-								src={photo.src}
-								alt={photo.alt}
-								class="h-auto w-full object-cover"
-								loading={index === 0 ? 'eager' : 'lazy'}
-							/>
-						</div>
+			{storePhotos.map((photo, index) => (
+				<div
+					role="group"
+					aria-roledescription="slide"
+					data-slot="carousel-item"
+					class="min-w-0 shrink-0 grow-0 basis-full pl-4"
+				>
+					<div class="overflow-hidden rounded-2xl border border-white/10">
+						<img
+							src={photo.src}
+							alt={photo.alt}
+							class="h-auto w-full object-cover"
+							loading={index === 0 ? 'eager' : 'lazy'}
+						/>
 					</div>
-				))
-			}
+				</div>
+			))}
 		</div>
 	</div>
 	<button
@@ -59,7 +57,11 @@ const buttonClass =
 		<Icon name="ArrowLeft" />
 		<span class="sr-only">Previous slide</span>
 	</button>
-	<button data-slot="carousel-next" class:list={[buttonClass, 'right-4']} disabled>
+	<button
+		data-slot="carousel-next"
+		class:list={[buttonClass, 'right-4']}
+		disabled
+	>
 		<Icon name="ArrowRight" />
 		<span class="sr-only">Next slide</span>
 	</button>
