@@ -1,0 +1,14 @@
+---
+interface Props {
+	icon: string
+	class?: string
+}
+
+const { icon, class: className } = Astro.props
+---
+
+<span
+	aria-hidden="true"
+	class:list={['inline-block [&>svg]:size-full', className]}
+	set:html={icon}
+/>

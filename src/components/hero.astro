@@ -1,17 +1,8 @@
 ---
 import { address, directionsLink, hours, mapEmbed, shop } from '../lib/shop'
 import Icon from './icon.astro'
-
-const fixes = [
-	'Laptops',
-	'Desktops',
-	'iPhone & iPad',
-	'Mac',
-	'Data recovery',
-	'Networking',
-	'Virus removal',
-	'Custom builds',
-]
+import ServiceIcon from './service-icon.astro'
+import { services } from '../lib/services'
 ---
 
 <section class="bg-primary text-ink">
@@ -97,10 +88,20 @@ const fixes = [
 	</div>
 
 	<div class="bg-ink text-primary">
-		<ul class="mx-auto flex max-w-7xl flex-wrap justify-center gap-x-9 gap-y-1 px-5 py-4 font-display text-xl sm:px-8 lg:justify-between">
-			{fixes.map((fix) => (
-				<li>{fix}</li>
-			))}
-		</ul>
+		<nav aria-label="Services" class="mx-auto max-w-7xl px-5 py-5 sm:px-8">
+			<ul class="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-4">
+				{services.map(({ id, icon, title }) => (
+					<li>
+						<a
+							href={`#${id}`}
+							class="on-ink-focus flex items-start gap-2.5 font-display text-lg leading-snug underline-offset-4 hover:underline"
+						>
+							<ServiceIcon icon={icon} class="mt-0.5 size-5 shrink-0" />
+							<span>{title}</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</nav>
 	</div>
 </section>
