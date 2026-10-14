@@ -10,13 +10,13 @@ const { class: className } = Astro.props
 	data-open-status
 	data-state="unknown"
 	class:list={[
-		'inline-flex items-center gap-2.5 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-ink-foreground',
+		'inline-flex items-center gap-3 text-base font-semibold',
 		className,
 	]}
 >
 	<span
 		aria-hidden="true"
-		class="size-2.5 shrink-0 rounded-full bg-ink-foreground/40 in-data-[state=open]:bg-primary"
+		class="size-2.5 shrink-0 rounded-full border-2 border-current in-data-[state=open]:bg-current in-data-[state=open]:ring-4 in-data-[state=open]:ring-current/20"
 	></span>
 	<span data-open-label>Mon–Sat · 10 AM–6 PM</span>
 </p>
