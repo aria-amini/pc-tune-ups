@@ -22,7 +22,8 @@ walks in during open hours. Calling the shop is the secondary action.
 ## Positioning
 
 A neighborhood repair counter with 10 years in business on Veterans Blvd. One
-shop covers computers, Apple devices, data recovery, networking, and custom builds.
+shop covers computers, Apple devices, data recovery, networking, and custom
+builds.
 
 ## Operating Context
 

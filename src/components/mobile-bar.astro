@@ -1,0 +1,42 @@
+---
+import { address, shop } from '../lib/shop'
+import Icon from './icon.astro'
+---
+
+<div
+	data-mobile-bar
+	inert
+	class="fixed inset-x-0 bottom-0 z-50 flex translate-y-full gap-3 bg-ink p-3 pb-safe opacity-0 shadow-bar transition duration-300 ease-out data-[visible]:translate-y-0 data-[visible]:opacity-100 md:hidden"
+>
+	<a
+		href={shop.mapLink}
+		target="_blank"
+		rel="noreferrer"
+		aria-label={`Get directions to ${address}`}
+		class="on-ink-focus inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-primary text-base font-bold text-ink"
+	>
+		<Icon name="MapPin" class="size-5" />
+		Get directions
+	</a>
+	<a
+		href={shop.phoneHref}
+		aria-label={`Call ${shop.phone}`}
+		class="on-ink-focus inline-flex size-12 items-center justify-center rounded-xl border border-ink-foreground/30 text-ink-foreground"
+	>
+		<Icon name="Phone" class="size-5" />
+	</a>
+</div>
+
+<script>
+	const bar = document.querySelector<HTMLElement>('[data-mobile-bar]')
+
+	const cta = document.querySelector('[data-hero-cta]')
+
+	if (bar && cta) {
+		new IntersectionObserver((entries) => {
+			const visible = entries.some((entry) => !entry.isIntersecting)
+			bar.toggleAttribute('data-visible', visible)
+			bar.toggleAttribute('inert', !visible)
+		}).observe(cta)
+	}
+</script>

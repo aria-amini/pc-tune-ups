@@ -1,49 +1,81 @@
 ---
+import { address, shop } from '../lib/shop'
 import Icon from './icon.astro'
-import StorePhotos from './store-photos.astro'
+import OpenStatus from './open-status.astro'
+
+const fixes = [
+	'Laptops',
+	'Desktops',
+	'iPhone & iPad',
+	'Mac',
+	'Data recovery',
+	'Networking',
+	'Virus removal',
+	'Custom builds',
+]
 ---
 
-<section class="space-y-8 rounded-3xl bg-linear-to-br from-card via-primary-soft to-background p-4 shadow-xl ring-1 shadow-foreground/10 ring-primary-muted/50 sm:p-6 md:p-8 lg:p-10">
-	<div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
-		<div class="order-1 space-y-6">
-			<div class="flex items-center gap-4">
-				<img
-					src="/logo.png"
-					alt="PC Tune-Ups vintage computer illustration"
-					class="h-24 items-start object-contain object-left"
-					width="1024"
-					height="1024"
-					decoding="async"
-				/>
-			</div>
-
-			<p class="max-w-3xl text-xl leading-relaxed text-foreground/85 sm:text-2xl">
-				Your neighborhood team for fast, friendly computer and device repair in
-				the Greater New Orleans area—with{' '}
-				<span class="font-semibold text-primary-strong">10+ years</span> of
-				hands-on experience.
+<section class="bg-primary text-ink">
+	<div class="mx-auto grid max-w-7xl gap-x-12 gap-y-8 px-5 pt-4 sm:px-8 lg:grid-cols-12 lg:pt-8">
+		<div class="flex flex-col justify-center lg:col-span-7 lg:pb-16">
+			<h1 class="animate-rise font-display text-hero">
+				Broken device?
+				<br />
+				Walk in.
+			</h1>
+			<p class="mt-6 max-w-xl animate-rise text-lg/relaxed font-medium text-ink/80 rise-delay-1 sm:text-xl/relaxed">
+				Repairs, upgrades, data recovery, and custom builds for computers, Macs,
+				iPhones, and iPads. A neighborhood repair counter on Veterans Blvd for
+				10 years.
 			</p>
-
-			<div class="flex flex-wrap gap-4 pt-4">
+			<div class="mt-8 flex animate-rise flex-wrap items-center gap-x-8 gap-y-4 rise-delay-2">
 				<a
-					href="tel:15048851635"
-					class="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-lg font-semibold text-primary-foreground transition-all duration-200 hover:-translate-y-px hover:bg-primary-hover hover:shadow-lg hover:shadow-primary-muted/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-hover"
+					data-hero-cta
+					href={shop.mapLink}
+					target="_blank"
+					rel="noreferrer"
+					class="group inline-flex h-14 items-center gap-2.5 rounded-xl bg-ink px-7 text-lg font-bold text-primary shadow-lg shadow-ink/25 transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ink/30 active:translate-y-0 active:shadow-md focus-visible:outline-ink"
 				>
-					<Icon name="Phone" class="h-6 w-6" />
-					<span>Call Now</span>
+					Get directions
+					<Icon
+						name="ArrowUpRight"
+						class="size-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+					/>
 				</a>
 				<a
-					href="mailto:info@afcom-inc.com"
-					class="inline-flex items-center gap-2 rounded-full border border-input bg-card px-7 py-3 text-lg font-semibold text-foreground transition-all duration-200 hover:-translate-y-px hover:bg-primary-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-hover"
+					href={shop.phoneHref}
+					class="rounded-md text-base font-semibold underline decoration-2 underline-offset-4 hover:decoration-ink/50"
 				>
-					<Icon name="Mail" class="h-6 w-6 text-primary-hover" />
-					<span>Email Us</span>
+					or call {shop.phone}
 				</a>
+			</div>
+			<div class="mt-6 flex animate-rise flex-wrap items-center gap-x-5 gap-y-3 rise-delay-3">
+				<OpenStatus />
+				<p class="flex items-center gap-2 text-sm font-semibold">
+					<Icon name="MapPin" class="size-4 shrink-0" />
+					<span>{address}</span>
+				</p>
 			</div>
 		</div>
 
-		<div class="order-2 overflow-hidden rounded-2xl border border-border bg-card shadow-lg shadow-foreground/15">
-			<StorePhotos />
+		<div class="relative min-h-72 animate-rise overflow-hidden rounded-t-3xl bg-ink rise-delay-2 lg:col-span-5 lg:self-end">
+			<img
+				src="/photos/pc1.webp"
+				alt="The PC Tune-Ups storefront on Veterans Blvd, with the green sign above the door"
+				width="1360"
+				height="1020"
+				class="absolute inset-0 size-full object-cover object-[56%_50%]"
+				fetchpriority="high"
+			/>
+			<div class="aspect-16/10 lg:aspect-4/5"></div>
 		</div>
+	</div>
+
+	<div class="bg-ink text-primary">
+		<ul class="mx-auto flex max-w-7xl flex-wrap justify-center gap-x-9 gap-y-1 px-5 py-4 font-display text-xl sm:px-8 lg:justify-between">
+			{fixes.map((fix) => (
+				<li>{fix}</li>
+			))}
+		</ul>
 	</div>
 </section>

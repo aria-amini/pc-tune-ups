@@ -1,12 +1,13 @@
 ---
+const featured = {
+	quote:
+		"I highly recommend. Had two of my business pc's crash on me at two different times and these guy got my computers back up and running smoother then it has ever been before.",
+	name: 'Rory',
+	role: 'Business Owner',
+	avatar: '/reviews/rory-150x150.jpg',
+}
+
 const testimonials = [
-	{
-		quote:
-			"I highly recommend. Had two of my business pc's crash on me at two different times and these guy got my computers back up and running smoother then it has ever been before.",
-		name: 'Rory',
-		role: 'Business Owner',
-		avatar: '/reviews/rory-150x150.jpg',
-	},
 	{
 		quote: 'Great group of people just got my PC back and it works flawless',
 		name: 'Damian',
@@ -29,32 +30,59 @@ const testimonials = [
 ]
 ---
 
-<section class="space-y-8">
-	<h2 class="text-center text-4xl font-bold tracking-tight text-foreground">
-		Testimonials
-	</h2>
-	<div class="mx-auto max-w-4xl columns-1 gap-6 sm:columns-2">
-		{testimonials.map(({ name, quote, avatar, role }) => (
-			<article class="mb-6 inline-block w-full break-inside-avoid rounded-2xl border border-border bg-card p-6 shadow-sm">
-				<p class="mb-4 leading-relaxed text-muted-foreground">{quote}</p>
-				<div class="flex items-center gap-3 border-t border-border pt-4">
-					<span
-						data-slot="avatar"
-						class="relative flex size-8 shrink-0 overflow-hidden rounded-2xl"
-					>
-						<img
-							data-slot="avatar-image"
-							class="aspect-square size-full"
-							src={avatar}
-							alt={`${name} avatar`}
-						/>
-					</span>
-					<div>
-						<p class="text-sm font-semibold text-foreground">{name}</p>
-						<p class="text-xs text-muted-foreground">{role}</p>
-					</div>
-				</div>
-			</article>
-		))}
+<section class="bg-ink text-ink-foreground">
+	<div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
+		<h2 class="sr-only">What customers say</h2>
+		<figure class="max-w-4xl">
+			<blockquote class="text-3xl/tight font-bold text-balance sm:text-4xl/tight lg:text-5xl/tight">
+				<span aria-hidden="true" class="text-primary">
+					“
+				</span>
+				{featured.quote}
+				<span aria-hidden="true" class="text-primary">
+					”
+				</span>
+			</blockquote>
+			<figcaption class="mt-6 flex items-center gap-3 text-base">
+				<img
+					src={featured.avatar}
+					alt=""
+					width="44"
+					height="44"
+					loading="lazy"
+					class="size-11 rounded-full object-cover"
+				/>
+				<span>
+					<span class="font-bold">{featured.name}</span>
+					<span class="text-ink-foreground/70"> · {featured.role}</span>
+				</span>
+			</figcaption>
+		</figure>
+
+		<ul class="mt-16 grid gap-x-10 gap-y-10 border-t border-ink-foreground/20 pt-10 md:grid-cols-3">
+			{testimonials.map(({ quote, name, role, avatar }) => (
+				<li>
+					<figure class="flex h-full flex-col justify-between gap-6">
+						<blockquote class="text-lg/relaxed text-ink-foreground/90">
+							“{quote}”
+						</blockquote>
+						<figcaption class="flex items-center gap-3 text-sm">
+							<img
+								src={avatar}
+								alt=""
+								width="36"
+								height="36"
+								loading="lazy"
+								class="size-9 rounded-full object-cover"
+							/>
+							<span>
+								<span class="block font-bold">{name}</span>
+								<span class="block text-ink-foreground/70">{role}</span>
+							</span>
+						</figcaption>
+					</figure>
+				</li>
+			))}
+		</ul>
 	</div>
 </section>

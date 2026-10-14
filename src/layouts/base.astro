@@ -1,16 +1,48 @@
 ---
+import { shop } from '../lib/shop'
 import '../styles/global.css'
+
+const localBusiness = {
+	'@context': 'https://schema.org',
+	'@type': 'ComputerStore',
+	name: shop.name,
+	url: Astro.site?.href,
+	telephone: shop.phoneHref.replace('tel:', ''),
+	email: shop.email,
+	image: new URL('/photos/pc1.webp', Astro.site).href,
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: shop.street,
+		addressLocality: shop.city,
+		addressRegion: shop.region,
+		addressCountry: 'US',
+	},
+	openingHoursSpecification: {
+		'@type': 'OpeningHoursSpecification',
+		dayOfWeek: [
+			'Monday',
+			'Tuesday',
+			'Wednesday',
+			'Thursday',
+			'Friday',
+			'Saturday',
+		],
+		opens: '10:00',
+		closes: '18:00',
+	},
+}
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>PC Tune-Ups</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#7ad61f" />
+		<title>PC Tune-Ups | Computer, Mac &amp; Phone Repair in Metairie</title>
 		<meta
 			name="description"
-			content="PC Tune-Ups delivers fast, professional phone, tablet, and computer repairs in Metairie with certified technicians and concierge-level service."
+			content="Walk-in computer, Mac, iPhone, and iPad repair at 3943 Veterans Blvd, Metairie. Open Mon–Sat, 10 AM–6 PM. Get directions."
 		/>
 		<meta
 			name="keywords"
@@ -18,8 +50,11 @@ import '../styles/global.css'
 		/>
 		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
 		<link rel="icon" type="image/png" href="/icon.png" />
-		<link rel="preload" as="image" href="/logo.png" />
 		<link rel="preload" as="image" href="/photos/pc1.webp" />
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(localBusiness)}
+		/>
 	</head>
 	<body>
 		<slot />

@@ -1,0 +1,82 @@
+---
+import { address, shop } from '../lib/shop'
+import Icon from './icon.astro'
+import OpenStatus from './open-status.astro'
+
+const photos = [
+	{
+		src: '/photos/pc3.webp',
+		alt: 'The repair counter at PC Tune-Ups with parts shelved behind it',
+		class: 'col-span-7',
+	},
+	{
+		src: '/photos/pc2.webp',
+		alt: 'Cables, drives, and components on the shop floor at PC Tune-Ups',
+		class: 'col-span-5 mt-10',
+	},
+]
+---
+
+<section id="visit" class="bg-primary text-ink">
+	<div class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-12 lg:py-28">
+		<div class="lg:col-span-6">
+			<h2 class="font-display text-6xl sm:text-7xl">Come by the shop</h2>
+			<address class="mt-8 text-2xl/snug font-bold not-italic">
+				{shop.street}
+				<br />
+				{shop.city}, {shop.region}
+			</address>
+			<dl class="mt-6 grid max-w-sm grid-cols-2 gap-y-1 text-lg">
+				<dt class="font-semibold">Mon–Sat</dt>
+				<dd>10 AM–6 PM</dd>
+				<dt class="font-semibold">Sunday</dt>
+				<dd>Closed</dd>
+			</dl>
+			<div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+				<a
+					href={shop.mapLink}
+					target="_blank"
+					rel="noreferrer"
+					aria-label={`Get directions to ${address}`}
+					class="group inline-flex h-14 items-center gap-2.5 rounded-xl bg-ink px-7 text-lg font-bold text-primary shadow-lg shadow-ink/25 transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ink/30 active:translate-y-0 active:shadow-md"
+				>
+					Get directions
+					<Icon
+						name="ArrowUpRight"
+						class="size-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+					/>
+				</a>
+				<OpenStatus />
+			</div>
+			<p class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-base font-semibold">
+				<a
+					href={shop.phoneHref}
+					class="rounded-md underline decoration-2 underline-offset-4 hover:decoration-ink/50"
+				>
+					{shop.phone}
+				</a>
+				<a
+					href={`mailto:${shop.email}`}
+					class="rounded-md underline decoration-2 underline-offset-4 hover:decoration-ink/50"
+				>
+					{shop.email}
+				</a>
+			</p>
+		</div>
+		<div class="grid grid-cols-12 items-start gap-4 lg:col-span-6">
+			{photos.map(({ src, alt, class: className }) => (
+				<img
+					src={src}
+					alt={alt}
+					width="1360"
+					height="1020"
+					loading="lazy"
+					class:list={[
+						'h-full w-full rounded-2xl object-cover shadow-xl shadow-ink/20',
+						className,
+					]}
+				/>
+			))}
+		</div>
+	</div>
+</section>
