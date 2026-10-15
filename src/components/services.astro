@@ -10,9 +10,12 @@ import ServiceIcon from './service-icon.astro'
 			Not sure it is fixable? Bring it by.
 		</p>
 	</div>
-	<ul class="mt-8 grid gap-x-12 border-t border-ink/15 md:grid-cols-2">
+	<ul class="mt-8 grid gap-x-12 md:grid-cols-2">
 		{services.map(({ id, icon, title, description }) => (
-			<li id={id} class="scroll-mt-8 border-b border-ink/15 py-5">
+			<li
+				id={id}
+				class="scroll-mt-8 border-b border-ink/15 py-5 first:border-t md:nth-2:border-t"
+			>
 				<h3 class="flex items-start gap-3 text-xl font-bold text-ink">
 					<ServiceIcon
 						icon={icon}
