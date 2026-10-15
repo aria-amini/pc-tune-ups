@@ -108,6 +108,15 @@
 	text-wrap: balance;
 }
 
+/* At small sizes the condensed face renders spaces too narrow to separate words. */
+@utility display-word-gap {
+	word-spacing: 0.12em;
+}
+
+@utility hang-quote {
+	text-indent: -0.4em;
+}
+
 @utility rise-delay-1 {
 	animation-delay: 90ms;
 }
