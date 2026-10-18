@@ -1,21 +1,15 @@
 import { playwrightConfig } from '@aamini/config/playwright'
 
-const port = Number(process.env.APP_PORT ?? '4321')
+const baseURL = process.env.BASE_URL?.trim()
 
-const baseURL = process.env.BASE_URL?.trim() || `http://localhost:${port}`
-
-const webServer = {
-	command: `pnpm build && pnpm wrangler dev --port ${port}`,
-	url: baseURL,
-	reuseExistingServer: !process.env.CI,
+if (!baseURL) {
+	throw new Error(
+		'Set BASE_URL to the site under test, for example a Cloudflare preview URL.',
+	)
 }
 
 export default {
-	...playwrightConfig({
-		testDir: './e2e',
-		baseURL,
-		webServer: process.env.BASE_URL ? undefined : webServer,
-	}),
+	...playwrightConfig({ testDir: './e2e', baseURL }),
 	// One baseline set for every base URL, so the live site and the local build
 	// compare against the same images.
 	snapshotPathTemplate:
