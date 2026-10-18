@@ -1,0 +1,6 @@
+# Changes here will be overwritten by Copier; do not edit manually
+_commit: v0.0.43-12-g365242e
+_src_path: https://github.com/aria-amini/toolkit
+app_name: pc-tune-ups
+site_url: https://www.pctuneupsnola.com
+template: astro

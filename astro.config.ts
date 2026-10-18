@@ -1,13 +1,17 @@
+import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
+import varlock from '@varlock/astro-integration'
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({
 	site: 'https://www.pctuneupsnola.com',
 	output: 'static',
 	devToolbar: { enabled: true, placement: 'bottom-right' },
-	integrations: [sitemap()],
+	integrations: [varlock(), sitemap(), react()],
+	server: { host: '127.0.0.1', port: Number(process.env.APP_PORT ?? 3000) },
 	vite: {
 		plugins: [tailwindcss()],
+		server: { strictPort: true },
 	},
 })
