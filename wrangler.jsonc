@@ -2,10 +2,11 @@
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "pc-tune-ups",
 	"compatibility_date": "2026-10-01",
+	"observability": { "enabled": true },
 	// Custom domains turn workers.dev off unless it is set here.
 	"workers_dev": true,
-	// Preview builds from Workers Builds run `wrangler preview`, which needs this
-	// block. preview_urls gives each Preview a workers.dev URL.
+	// Workers Builds runs `wrangler preview` for pull request branches, which
+	// needs this block. preview_urls gives each Preview a workers.dev URL.
 	"previews": {},
 	"preview_urls": true,
 	"assets": {

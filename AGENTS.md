@@ -1,0 +1,26 @@
+# pc-tune-ups
+
+Astro + React islands + Tailwind CSS, scaffolded from
+`~/toolkit/templates/astro`.
+
+Astro owns the dev server and build. Use `vp run dev` and `vp run build`. Vite+
+owns formatting, lint, and Vitest. Prettier and ESLint also check Astro markup.
+
+Run `vp install` before work. Run `vp run check`, `vp test run`, and
+`vp run build` before each commit. Run `BASE_URL=<dev url> vp run e2e` for route
+or island changes. Playwright starts no server; use the URL from
+`mise run bootstrap`.
+
+Write unit tests as `src/**/*.unit.test.ts`. Write e2e tests in `e2e/`.
+Screenshot baselines live in `e2e/__screenshots__`; record them with
+`pnpm e2e:update`.
+
+Run `mise run bootstrap` for each checkout to register and start Pitchfork. Take
+colors from theme tokens in `src/styles/global.css`. Build dynamic classes with
+`cn()` from `cn`; never use template literals. Add UI components with
+`pnpm dlx shadcn@latest add <name>` (style `base-vega`, Base UI). They live in
+`src/components/ui`. Mount them in `.astro` pages as islands with a `client:`
+directive.
+
+Import the Bootstrap action from `t3.json` in T3 project Actions settings. It
+holds the agent until bootstrap exits in a new worktree.

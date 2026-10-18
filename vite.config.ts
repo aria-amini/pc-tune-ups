@@ -1,10 +1,14 @@
 import { fmt, lint, mergeToolkitConfig } from '@aamini/config/vite-plus'
 import { defineConfig } from 'vite-plus'
 
-// Vite+ runs formatting and linting only; Astro owns the build.
+// Astro owns the dev server and build; Vite+ owns checks and tests.
 export default defineConfig(
 	mergeToolkitConfig(
-		{ fmt, lint: lint('astro') },
+		{
+			fmt,
+			lint: lint('react'),
+			test: { include: ['src/**/*.unit.test.ts'], passWithNoTests: true },
+		},
 		{
 			fmt: { ignorePatterns: (preset) => [...preset, '.astro/**'] },
 			lint: {
